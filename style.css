@@ -1,0 +1,295 @@
+/* || RESET */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* || BASE */
+
+html {
+    font-size: 62.5%;
+
+    --color-primary: hsl(214, 44%, 93%);
+    --color-text: hsl(215, 46%, 53%);
+    --color-text-m: hsl(215, 46%, 43%);
+    --shadow-section: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #fff;
+    --shadow-btn-ring: 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.1rem 0.5rem #fff;
+    --shadow-btn-active: inset 0.2rem 0.2rem 0.5rem #c8d0e7, inset -0.2rem -0.2rem 0.5rem #fff;
+    --bg-button1-ring1: linear-gradient(145deg, #c8d0e7, #fff);
+    --bg-button2: linear-gradient(145deg, #ced4dd, #f5fdff);
+
+    --padding-section: 2rem;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a:any-link {
+    text-decoration: none;
+    color: var(--color-text); 
+}
+
+a:active {
+    color: inherit;
+}
+
+a:focus,
+input:focus {
+    outline-color: #87ceeb;
+    outline-offset: 0.2rem;
+    outline-style: dashed;
+}
+
+::selection {
+    background-color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    box-shadow: var(--shadow-btn-active);
+    border-radius: 0.5rem;
+}
+
+.container {
+    padding: 2rem;
+    display: grid;
+    /* grid-template-columns: [content-start] 1fr repeat(4, [col-start] minmax(min-content, 30rem) [col-end]) 1fr [content-end]; */
+    grid-template-columns: [content-start] 1fr repeat(6, [col-start] minmax(min-content, 20rem) [col-end]) 1fr [content-end];
+    /* grid-template-areas:
+    ". button3 . social social ."
+    ". button button button2 button2 ."
+    ". aside . . . ."; */
+    grid-template-areas: ". logo logo . social social social ."
+                         ". button button button button2 button2 button2 ."
+                         ". . . aside aside . . ." ;
+    gap: 4rem 0;
+    background-color: var(--color-primary);
+    min-height: 100vh;
+}
+
+/* || MAIN */
+
+section {
+    padding: var(--padding-section);
+    box-shadow: var(--shadow-section);
+}
+
+#logo {
+    grid-area: logo;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+}
+
+#logo img {
+    width: 15rem;
+    height: 15rem;
+}
+
+/* Animated button */
+
+#button1 { 
+    grid-area: button; 
+    width: 35rem;
+    height: 35rem;
+    justify-self: center;
+    margin-left: 12rem;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    padding: 0;
+}
+
+.button1__center {
+    grid-row: 1;
+    grid-column: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: var(--shadow-section);
+    z-index: 3;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-section);
+}
+
+.button1__ring1,
+.button1__ring2 {
+    grid-column: 1;
+    grid-row: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    filter: blur(1px);
+    z-index: 2;
+}
+
+.button1__ring1 {
+    background: var(--bg-button1-ring1);
+    animation: waves2 4s linear 1s infinite;
+}
+  
+.button1__ring2 {
+    animation: waves1 4s linear infinite;
+    box-shadow: var(--shadow-btn-ring);
+}
+
+#button1 h1 {
+    font-size: calc(2.5rem + 1vw);
+    font-weight: 700;
+    text-align: center; 
+    color: var(--color-text-m);
+}
+  
+  
+  @keyframes waves1 {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes waves2 {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+#button2 {
+    grid-area: button2;
+    flex-direction: column;
+    width: 35rem;
+    height: 35rem;
+    justify-self: center;
+    background: var(--bg-button2);
+    box-shadow: var(--shadow-section);
+    overflow: hidden;
+    padding: var(--padding-section);
+}
+
+
+
+#button2 p {
+    font-size: calc(1.2rem + 1vw);
+    font-weight: 400;
+    text-align: center; 
+    color: var(--color-text);
+}
+
+#button2 p:nth-child(even) {
+    align-self: flex-start;
+}
+
+#button2 p:nth-child(odd) {
+    align-self: flex-end;
+}
+
+#social { 
+    grid-area: social; 
+    align-self: center;
+}
+
+#social ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+#social ul li a {
+    transition: all .2s ease-in-out;
+    color: var(--color-text);
+    font-weight: 300;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1.5rem;
+    font-size: calc(1rem + 1vw);
+    box-shadow: var(--shadow-section);
+    border-radius: 0.5rem;
+}
+
+#social ul li a:hover {
+    color: var(--color-text-m);
+}
+
+#social ul li a:active {
+    box-shadow: var(--shadow-btn-active);
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 500px) {
+    #button1,
+    #button2 {
+        width: 25rem;
+        height: 25rem;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .container {
+        grid-template-areas:
+        ". social social social social social social ."
+        ". logo logo logo logo logo logo ."
+        ". button button button button button button ."
+        ". button2 button2 button2 button2 button2 button2 ."
+        ". aside aside aside aside aside aside .";
+        align-items: center;
+        justify-items: center;
+    }
+
+    #social {
+        width: 100%;
+    }
+
+    #button1 {
+        margin: 4rem 0 4rem;
+    }
+}
